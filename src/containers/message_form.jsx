@@ -18,8 +18,13 @@ class MessageForm extends Component {
   }
 
   handleSubmit(event) {
-    alert('A message was submitted: ' + this.state.value);
+    // alert('A message was submitted: ' + this.state.value);
     event.preventDefault();
+    this.props.createMessage(
+      this.props.selectedChannel,
+      this.props.currentUser,
+      this.state.value
+      );
   }
 
   render() {
@@ -29,7 +34,7 @@ class MessageForm extends Component {
           Message:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="btn btn-primary"/>
       </form>
     );
   }
@@ -44,7 +49,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    messages: state.messages,
+    currentUser: state.currentUser,
     selectedChannel: state.selectedChannel
   };
 }

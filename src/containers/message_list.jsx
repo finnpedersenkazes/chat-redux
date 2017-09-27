@@ -11,6 +11,16 @@ class MessageList extends Component {
     this.props.fetchMessages(this.props.selectedChannel);
   }
 
+  componentDidMount() {
+   const intervalId = setInterval(() => this.props.fetchMessages(this.props.selectedChannel), 10000);
+   // store intervalId in the state so it can be accessed later:
+  }
+
+  componentWillUnmount() {
+   // use intervalId from the state to clear the interval
+   clearInterval(intervalId);
+  }
+
   renderList = () => {
     return this.props.messages.map((message) => {
       return (
@@ -20,7 +30,6 @@ class MessageList extends Component {
   }
 
   render() {
-
     return (
       <div>
         {this.renderList()}
