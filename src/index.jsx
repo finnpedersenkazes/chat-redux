@@ -2,7 +2,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+// middleware
+import { logger } from 'redux-logger';
+import reduxPromise from 'redux-promise';
 
 // internal modules
 import App from './components/app';
@@ -17,7 +21,8 @@ import selectedChannelReducer from './reducers/selected_channel_reducer';
 const initialState = {
   messages: [],
   channels: [ 'general', 'paris', 'react'],
-  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  currentUser: 'Finn',
+  // currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
 }
 
@@ -28,9 +33,12 @@ const reducers = combineReducers({
   selectedChannel: selectedChannelReducer
 });
 
+const middlewares = applyMiddleware(logger, reduxPromise);
+const store = createStore(reducers, initialState, middlewares)
+
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.querySelector('.container')
