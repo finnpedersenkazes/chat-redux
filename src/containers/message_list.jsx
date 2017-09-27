@@ -12,7 +12,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
-   const intervalId = setInterval(() => this.props.fetchMessages(this.props.selectedChannel), 10000);
+   const intervalId = setInterval(() => this.props.fetchMessages(this.props.selectedChannel), 1000);
    // store intervalId in the state so it can be accessed later:
   }
 

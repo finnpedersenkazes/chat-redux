@@ -8,3 +8,23 @@ body {
   margin-bottom: 20px;
   display: flex;
 }
+
+.selectedChannel {
+  color: black;
+  margin: 10px;
+  border: 1px solid black;
+  padding: 10px 15px;
+  border-radius: 50px;
+  opacity: 1;
+}
+
+.unselectedChannel {
+  margin: 10px;
+  color: black;
+  border: 1px solid #999999;
+  padding: 10px 15px;
+  border-radius: 50px;
+  opacity: 0.6;
+}
+
+
